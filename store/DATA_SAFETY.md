@@ -10,4 +10,7 @@ Answers are accurate for version 1.0.0 as built. **You must review and submit th
 | Third-party SDKs that collect data | None | No ad, analytics or crash SDKs are included. |
 | Optional permission: POST_NOTIFICATIONS | Used for the optional local daily reminder only | Notification is scheduled on-device. |
 
-Permissions: `app.json` blocks INTERNET, SYSTEM_ALERT_WINDOW and external-storage permissions, so the app **cannot** use the network. Expected final permissions: VIBRATE (haptics), POST_NOTIFICATIONS and RECEIVE_BOOT_COMPLETED (daily reminder, from expo-notifications). The CI build prints the real list ("Print final permissions" step); compare it with this file before each release.
+Permissions (verified from the first real CI build on 2026-11-24 with `aapt2 dump permissions`):
+- First build contained, besides the ones we use: ACCESS_NETWORK_STATE, WAKE_LOCK, a push-message receiver permission (c2dm), a Play install-referrer permission and about 15 launcher "badge" permissions, all merged in by the notification/application libraries. INTERNET was correctly absent.
+- `app.json` now blocks INTERNET, overlay, external storage, c2dm, install-referrer and all badge permissions. **Expected final list:** VIBRATE, RECEIVE_BOOT_COMPLETED, POST_NOTIFICATIONS, ACCESS_NETWORK_STATE, WAKE_LOCK (plus an internal AndroidX receiver permission). The next CI run prints the real list; compare it with this file before every release.
+- The Expo notifications library bundles Google Firebase Messaging classes for remote push. This app uses local notifications only, has no Firebase configuration and, without the INTERNET permission, cannot transmit data. If Play Console's checks still flag a Firebase/Google SDK, review the "SDKs" notes there and tell Claude.

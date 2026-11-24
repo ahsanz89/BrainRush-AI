@@ -1,4 +1,4 @@
-"""Renders real app screens (web build in headless Chrome) into Play Store screenshots, 1080x1920.
+"""Renders real app screens (web build in headless Chrome) into Play Store screenshots, 1080x2160.
 Usage: npx expo export --platform web --output-dir /tmp/webexp && python3 tools/make_screenshots.py
 The sample profile below is DEMO DATA used only to make screenshots look lived-in."""
 import json, re, subprocess, time, sys
@@ -17,7 +17,7 @@ try:
   with sync_playwright() as p:
     b=p.chromium.launch(executable_path='/usr/bin/google-chrome',args=['--no-sandbox'])
     def ctx(profile,scheme='dark'):
-        c=b.new_context(viewport={'width':360,'height':640},device_scale_factor=3,color_scheme=scheme,is_mobile=True,has_touch=True)
+        c=b.new_context(viewport={'width':360,'height':720},device_scale_factor=3,color_scheme=scheme,is_mobile=True,has_touch=True)
         if profile is not None: c.add_init_script("localStorage.setItem('brainrush.profile.v1', %s)"%json.dumps(json.dumps(profile)))
         return c
     def shot(pg,name): pg.wait_for_timeout(500); pg.screenshot(path=f'{OUT}/{name}.png'); print(name)
