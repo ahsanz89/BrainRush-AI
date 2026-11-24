@@ -1,0 +1,28 @@
+name: Stage AAB for upload
+# Copies a signed .aab from a GitHub Release onto the throw-away branch "play-upload"
+# so it can be fetched with a plain URL. Only the public signed bundle, never keys.
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag containing BrainRush-AI-release.aab'
+        required: true
+        default: 'release-6'
+permissions:
+  contents: write
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the bundle from the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download "${{ inputs.tag }}" --repo "$GITHUB_REPOSITORY" -p 'BrainRush-AI-release.aab'
+      - name: Push to branch play-upload
+        run: |
+          git init -q -b play-upload
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add BrainRush-AI-release.aab
+          git commit -qm "Stage signed AAB from ${{ inputs.tag }}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git" play-upload
