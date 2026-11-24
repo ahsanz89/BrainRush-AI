@@ -20,11 +20,10 @@ export function StoreProvider({ children }: { children: (s: Store) => React.Reac
   const [loaded, setLoaded] = useState(false);
   const [last, setLast] = useState<LastSession | null>(null);
   const ref = useRef(profile);
-  ref.current = profile;
 
   useEffect(() => {
     AsyncStorage.getItem(KEY).then((raw) => {
-      if (raw) { try { setProfile({ ...newProfile(), ...JSON.parse(raw) }); } catch { /* corrupted data: start fresh */ } }
+      if (raw) { try { const p = { ...newProfile(), ...JSON.parse(raw) }; ref.current = p; setProfile(p); } catch { /* corrupted data: start fresh */ } }
     }).finally(() => setLoaded(true));
   }, []);
 
@@ -35,7 +34,9 @@ export function StoreProvider({ children }: { children: (s: Store) => React.Reac
     AsyncStorage.setItem(KEY, JSON.stringify(next)).catch(() => {});
   }, []);
   const reset = useCallback(async () => { await AsyncStorage.removeItem(KEY); const p = newProfile(); ref.current = p; setProfile(p); setLast(null); }, []);
+  // The ref is only touched inside callbacks (never read to render); the compiler lint cannot see that.
   const value = { profile, loaded, update, reset, last, setLast };
+  // eslint-disable-next-line react-hooks/refs
   return <Ctx.Provider value={value}>{children(value)}</Ctx.Provider>;
 }
 export const useStore = () => useContext(Ctx);

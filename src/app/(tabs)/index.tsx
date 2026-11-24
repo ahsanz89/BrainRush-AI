@@ -24,7 +24,8 @@ export default function Home() {
   const rec = catById(recommendCategory(profile, new Date().getDate()))!;
   const hour = new Date().getHours();
   const greet = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
-  const streakAlive = profile.streak.lastDay === today || profile.streak.lastDay === todayISO(new Date(Date.now() - 86400000));
+  const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+  const streakAlive = profile.streak.lastDay === today || profile.streak.lastDay === todayISO(yesterday);
   const play = (category: string, mode: string) => router.push({ pathname: '/play', params: { category, mode } });
 
   return (

@@ -5,7 +5,6 @@ import { AppText, Button, Card, IconBadge, Row, Screen, ProgressBar } from '../u
 import { ACHIEVEMENTS } from '../engine/profile';
 import { useStore } from '../state/store';
 import { useTheme } from '../theme/ThemeProvider';
-import { space } from '../theme/tokens';
 
 export default function Achievements() {
   const { profile } = useStore();

@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { AppText, Card, Row, Screen, IconBadge } from '../../ui';
+import { AppText, Card, Row, Screen } from '../../ui';
 import type { IconName } from '../../ui';
 import { useStore } from '../../state/store';
 import { useTheme } from '../../theme/ThemeProvider';

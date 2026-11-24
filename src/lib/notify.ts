@@ -5,6 +5,7 @@ Notifications.setNotificationHandler({ handleNotification: async () => ({ should
 
 /** Local-only daily reminder. Nothing leaves the device. Returns false if permission was denied. */
 export async function scheduleDailyReminder(hour: number, minute: number): Promise<boolean> {
+  // eslint-disable-next-line import/namespace
   if (Platform.OS === 'android') await Notifications.setNotificationChannelAsync('reminders', { name: 'Daily reminder', importance: Notifications.AndroidImportance.DEFAULT });
   const cur = await Notifications.getPermissionsAsync();
   const perm = cur.granted ? cur : await Notifications.requestPermissionsAsync();

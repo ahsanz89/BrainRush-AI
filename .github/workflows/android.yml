@@ -1,0 +1,105 @@
+name: Android build
+
+# Uses only GitHub's own official actions and the GitHub-hosted runner's preinstalled Android SDK.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Build signed release APK + AAB (needs the 4 signing secrets, see docs/BUILD_AND_RELEASE.md)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+  test-apk:
+    # Self-contained APK for trying the app on a phone (release build signed with the debug key). Not for Google Play.
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 17 }
+      - run: npm ci
+      - run: npx expo prebuild --platform android --no-install --clean
+      - name: Build test APK
+        working-directory: android
+        run: ./gradlew assembleRelease --no-daemon
+      - name: Print final permissions (review against store/DATA_SAFETY.md)
+        run: |
+          AAPT2=$(ls "$ANDROID_HOME"/build-tools/*/aapt2 | sort -V | tail -1)
+          "$AAPT2" dump permissions android/app/build/outputs/apk/release/app-release.apk | tee permissions.txt
+      - name: Rename
+        run: cp android/app/build/outputs/apk/release/app-release.apk BrainRush-AI-test.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BrainRush-AI-test-apk
+          path: BrainRush-AI-test.apk
+
+  release:
+    if: github.event_name == 'workflow_dispatch' && inputs.release
+    needs: test
+    runs-on: ubuntu-latest
+    env:
+      ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+      ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+      ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+      KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+    steps:
+      - name: Require signing secrets
+        run: |
+          for v in ANDROID_KEYSTORE_PASSWORD ANDROID_KEY_ALIAS ANDROID_KEY_PASSWORD KEYSTORE_B64; do
+            if [ -z "${!v}" ]; then echo "::error::Missing secret for $v. Follow docs/BUILD_AND_RELEASE.md step 2."; exit 1; fi
+          done
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 17 }
+      - run: npm ci
+      - name: Decode keystore
+        run: |
+          echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+          echo "ANDROID_KEYSTORE_PATH=$RUNNER_TEMP/upload.jks" >> "$GITHUB_ENV"
+      - run: npx expo prebuild --platform android --no-install --clean
+      - name: Build signed APK and AAB
+        working-directory: android
+        run: ./gradlew assembleRelease bundleRelease --no-daemon
+      - name: Verify signatures are NOT the debug key
+        run: |
+          APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -1)
+          "$APKSIGNER" verify --print-certs android/app/build/outputs/apk/release/app-release.apk | tee apk-cert.txt
+          if grep -qi "Android Debug" apk-cert.txt; then echo "::error::APK is signed with the debug key"; exit 1; fi
+          jarsigner -verify -certs android/app/build/outputs/bundle/release/app-release.aab | tee aab-cert.txt
+          if grep -qi "Android Debug" aab-cert.txt; then echo "::error::AAB is signed with the debug key"; exit 1; fi
+      - name: Print final permissions (review against store/DATA_SAFETY.md)
+        run: |
+          AAPT2=$(ls "$ANDROID_HOME"/build-tools/*/aapt2 | sort -V | tail -1)
+          "$AAPT2" dump permissions android/app/build/outputs/apk/release/app-release.apk | tee permissions.txt
+      - name: Collect
+        run: |
+          mkdir out
+          cp android/app/build/outputs/apk/release/app-release.apk out/BrainRush-AI-release.apk
+          cp android/app/build/outputs/bundle/release/app-release.aab out/BrainRush-AI-release.aab
+          sha256sum out/* > out/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BrainRush-AI-release
+          path: out/*
+          retention-days: 30

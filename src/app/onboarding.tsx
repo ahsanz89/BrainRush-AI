@@ -78,7 +78,11 @@ export default function Onboarding() {
           <Card><View style={{ gap: 6 }}>
             <AppText v="heading">Your privacy</AppText>
             <AppText color={colors.muted}>BrainRush AI keeps your progress on this device only. We collect nothing and show no ads in this version.</AppText>
-            <AppText v="caption" color={colors.muted}>By continuing you agree to the Terms of Use and Privacy Policy, available in Profile.</AppText>
+            <AppText v="caption" color={colors.muted}>By continuing you agree to the Terms of Use and Privacy Policy.</AppText>
+            <Row>
+              <Button label="Privacy Policy" icon="shield-checkmark-outline" variant="ghost" onPress={() => router.push('/legal/privacy')} style={{ flex: 1 }} />
+              <Button label="Terms" icon="document-text-outline" variant="ghost" onPress={() => router.push('/legal/terms')} style={{ flex: 1 }} />
+            </Row>
           </View></Card>
           {note ? <AppText color={colors.warn}>{note}</AppText> : null}
         </View>

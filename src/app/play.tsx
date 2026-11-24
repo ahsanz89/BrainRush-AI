@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Alert, BackHandler, Pressable, View, useWindowDimensions } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
@@ -27,20 +27,22 @@ export default function Play() {
   const router = useRouter();
   const { colors } = useTheme();
   const { profile, update, setLast } = useStore();
-  const items = useMemo<Item[]>(() => buildSession({ category: category as SessionCategory, mode: mode as Mode, difficulty: difficultyFor(profile.difficulty),
-    seed: mode === 'daily' ? dailySeed() : Math.floor(Math.random() * 2147483647), content: bundledContent }), [category, mode]); // eslint-disable-line react-hooks/exhaustive-deps
+  const [items] = useState<Item[]>(() => buildSession({ category: category as SessionCategory, mode: mode as Mode, difficulty: difficultyFor(profile.difficulty),
+    seed: mode === 'daily' ? dailySeed() : Math.floor(Math.random() * 2147483647), content: bundledContent }));
+  const [start] = useState(() => Date.now());
+  const limitFor = (it: Item) => (mode === 'timed' && it.kind !== 'memory' ? (it.kind === 'odd' ? 20 : 15) : 0);
 
   const [idx, setIdx] = useState(0);
   const [answered, setAnswered] = useState<Answered | null>(null);
   const [eliminated, setEliminated] = useState<number[]>([]);
   const [replayKey, setReplayKey] = useState(0);
   const [hintText, setHintText] = useState('');
-  const [timeLeft, setTimeLeft] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(() => limitFor(items[0]));
+  const [correctCount, setCorrectCount] = useState(0);
   const hints = useRef(0);
   const review = useRef<ReviewEntry[]>([]);
-  const start = useRef(Date.now());
   const item = items[idx];
-  const limit = mode === 'timed' && item.kind !== 'memory' ? (item.kind === 'odd' ? 20 : 15) : 0;
+  const limit = limitFor(item);
 
   const haptic = useCallback((ok: boolean) => { if (profile.haptics) Haptics.notificationAsync(ok ? Haptics.NotificationFeedbackType.Success : Haptics.NotificationFeedbackType.Error).catch(() => {}); }, [profile.haptics]);
 
@@ -48,19 +50,23 @@ export default function Play() {
     if (answered) return;
     review.current.push({ item, correct, answered: label });
     setAnswered({ correct, label, selected });
+    if (correct) setCorrectCount((c) => c + 1);
     haptic(correct);
   }, [answered, item, haptic]);
 
-  // per-item timer
+  // per-item timer: the interval callback (not render or effect body) drives state
+  const resolveRef = useRef(resolve);
+  useEffect(() => { resolveRef.current = resolve; });
   useEffect(() => {
-    setEliminated([]); setHintText(''); setAnswered(null);
-    if (!limit) return;
-    setTimeLeft(limit);
+    if (!limit || answered) return;
     const end = Date.now() + limit * 1000;
-    const t = setInterval(() => { const left = Math.max(0, Math.ceil((end - Date.now()) / 1000)); setTimeLeft(left); }, 250);
+    const t = setInterval(() => {
+      const left = Math.max(0, Math.ceil((end - Date.now()) / 1000));
+      setTimeLeft(left);
+      if (left === 0) { clearInterval(t); resolveRef.current(false, "Time's up"); }
+    }, 250);
     return () => clearInterval(t);
-  }, [idx, limit]);
-  useEffect(() => { if (limit && timeLeft === 0 && !answered) resolve(false, "Time's up"); }, [timeLeft]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [idx, limit, answered]);
 
   const quit = useCallback(() => {
     Alert.alert('Leave this session?', 'Your progress in this round will be lost.', [{ text: 'Keep playing', style: 'cancel' }, { text: 'Leave', style: 'destructive', onPress: () => router.back() }]);
@@ -69,11 +75,11 @@ export default function Play() {
   useEffect(() => { const s = BackHandler.addEventListener('hardwareBackPress', quit); return () => s.remove(); }, [quit]);
 
   const next = () => {
-    if (idx + 1 < items.length) { setIdx(idx + 1); return; }
+    if (idx + 1 < items.length) { setIdx(idx + 1); setAnswered(null); setEliminated([]); setHintText(''); setTimeLeft(limitFor(items[idx + 1])); return; }
     const correct = review.current.filter((r) => r.correct).length;
     let out: any;
-    update((p) => { out = applySession(p, { category: category as SessionCategory, mode: mode as Mode, total: items.length, correct, hintsUsed: hints.current, durationMs: Date.now() - start.current, difficulty: difficultyFor(profile.difficulty) }, todayISO()); return out.profile; });
-    setLast({ review: review.current, durationMs: Date.now() - start.current, hintsUsed: hints.current, category, mode, result: out });
+    update((p) => { out = applySession(p, { category: category as SessionCategory, mode: mode as Mode, total: items.length, correct, hintsUsed: hints.current, durationMs: Date.now() - start, difficulty: difficultyFor(profile.difficulty) }, todayISO()); return out.profile; });
+    setLast({ review: review.current, durationMs: Date.now() - start, hintsUsed: hints.current, category, mode, result: out });
     router.replace('/results');
   };
 
@@ -89,7 +95,6 @@ export default function Play() {
   };
 
   const meta = catById(item.category);
-  const correctCount = review.current.filter((r) => r.correct).length;
   return (
     <Screen>
       <Row>
@@ -105,7 +110,7 @@ export default function Play() {
       </Row>
 
       {item.kind === 'choice' && <ChoiceView item={item} answered={answered} eliminated={eliminated} onPick={(i) => resolve(i === item.answerIndex, item.options[i], i)} />}
-      {item.kind === 'memory' && <MemoryView key={item.id} item={item} answered={answered} replayKey={replayKey} onResolve={resolve} />}
+      {item.kind === 'memory' && <MemoryView key={`${item.id}:${replayKey}`} item={item} answered={answered} onResolve={resolve} />}
       {item.kind === 'odd' && <OddView item={item} answered={answered} onResolve={resolve} />}
 
       {!answered && (
@@ -153,7 +158,7 @@ function ChoiceView({ item, answered, eliminated, onPick }: { item: ChoiceItem; 
   );
 }
 
-function MemoryView({ item, answered, replayKey, onResolve }: { item: MemoryItem; answered: Answered | null; replayKey: number; onResolve: (c: boolean, l: string) => void }) {
+function MemoryView({ item, answered, onResolve }: { item: MemoryItem; answered: Answered | null; onResolve: (c: boolean, l: string) => void }) {
   const { colors } = useTheme();
   const { width } = useWindowDimensions();
   const [lit, setLit] = useState<number | null>(null);
@@ -161,12 +166,11 @@ function MemoryView({ item, answered, replayKey, onResolve }: { item: MemoryItem
   const [taps, setTaps] = useState<number[]>([]);
   const size = Math.min(width - 2 * space.lg, 360), tile = (size - space.sm * (item.grid - 1)) / item.grid;
   useEffect(() => {
-    setPhase('show'); setTaps([]); setLit(null);
     let live = true; const ts: ReturnType<typeof setTimeout>[] = [];
     item.sequence.forEach((t, i) => { ts.push(setTimeout(() => live && setLit(t), 700 + i * 800)); ts.push(setTimeout(() => live && setLit(null), 700 + i * 800 + 550)); });
     ts.push(setTimeout(() => live && setPhase('input'), 700 + item.sequence.length * 800));
     return () => { live = false; ts.forEach(clearTimeout); };
-  }, [item.id, replayKey]);
+  }, [item.sequence]);
   const press = (t: number) => {
     if (phase !== 'input' || answered) return;
     const next = [...taps, t]; setTaps(next);

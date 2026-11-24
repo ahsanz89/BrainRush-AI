@@ -36,6 +36,11 @@ export default function Settings() {
         </Row>
       </View></Card>
       <Card><View style={{ gap: space.md }}>
+        <AppText v="heading">Legal</AppText>
+        <Button label="Privacy Policy" icon="shield-checkmark-outline" variant="secondary" onPress={() => router.push('/legal/privacy')} />
+        <Button label="Terms of Use" icon="document-text-outline" variant="secondary" onPress={() => router.push('/legal/terms')} />
+      </View></Card>
+      <Card><View style={{ gap: space.md }}>
         <AppText v="heading">Your data</AppText>
         <AppText color={colors.muted}>Everything is stored on this device only. You can erase it at any time.</AppText>
         <Button label="Delete all my data" variant="danger" icon="trash" onPress={confirmReset} />

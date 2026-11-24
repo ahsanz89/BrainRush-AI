@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { AppText, Button, Card, Row, Screen, Segmented } from '../ui';
+import { AppText, Button, Card, Screen, Segmented } from '../ui';
 import { useStore } from '../state/store';
 import { useTheme } from '../theme/ThemeProvider';
 import { cancelReminder, scheduleDailyReminder } from '../lib/notify';

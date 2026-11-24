@@ -7,8 +7,11 @@ import { useTheme } from '../../theme/ThemeProvider';
 export default function TabsLayout() {
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
-  const icon = (n: React.ComponentProps<typeof Ionicons>['name'], on: React.ComponentProps<typeof Ionicons>['name']) =>
-    ({ color, focused }: { color: any; focused: boolean }) => <Ionicons name={focused ? on : n} size={24} color={color} />;
+  type IconName = React.ComponentProps<typeof Ionicons>['name'];
+  const icon = (n: IconName, on: IconName) => {
+    const TabIcon = ({ color, focused }: { color: any; focused: boolean }) => <Ionicons name={focused ? on : n} size={24} color={color} />;
+    return TabIcon;
+  };
   return (
     <Tabs screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.primary, tabBarInactiveTintColor: colors.muted,
       tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border, height: 72 + insets.bottom, paddingBottom: insets.bottom + 10, paddingTop: 8 },

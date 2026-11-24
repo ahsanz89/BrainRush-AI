@@ -1,0 +1,19 @@
+# Test report (v1.0.0, run on 2026-11-24 in the build sandbox)
+
+Only checks that were actually executed are marked PASS. Anything else is listed as NOT RUN.
+
+| # | Test | Expected | Actual | Status |
+|---|---|---|---|---|
+| 1 | `npm test`: engine (levels, XP, caps, anti-fast, streaks incl. month boundary, math/pattern/visual/memory/attention generators, session builder, profile, achievements) | all pass | 40/40 pass across 4 suites | PASS |
+| 2 | Content validation of 71 questions | no validator errors | initially failed on 2 near-duplicate prompts ("Which spelling is correct?"); prompts reworded; now 0 errors | PASS (defect fixed) |
+| 3 | `npm run typecheck` (strict TS) | 0 errors | 0 errors | PASS |
+| 4 | `expo export --platform android` | Hermes bundle builds | 3.3 MB bundle produced | PASS |
+| 5 | `expo prebuild --platform android` | project generated, targetSdk 36, release signing patched | yes; manifest permissions reduced to VIBRATE/POST_NOTIFICATIONS/RECEIVE_BOOT_COMPLETED | PASS |
+| 6 | Web render + scripted play-through in headless Chrome (onboarding, home, train, category, play 5 maths questions by solving them, feedback, results, progress, achievements, memory game, light theme) | flow completes | completes; found and fixed tab-bar label clipping | PASS (defect fixed) |
+| 7 | Anti-abuse in a real flow: instant taps | XP 0 + notice | "too fast to count" shown, 0 XP | PASS |
+| 7b | `eslint` (expo config) on src, tests, plugins | 0 errors | initially 17 errors (React-hooks purity/ref/effect rules, unused imports, one syntax slip); play screen, store and button refactored; now 0 errors | PASS (defects fixed) |
+| 8 | Gradle assembleRelease / bundleRelease | APK + AAB | not run here (no Android SDK access) | NOT RUN (CI) |
+| 9 | Install and play on a real device/emulator | works | not run | NOT RUN |
+| 10 | UI/instrumentation, network-failure, ad tests | n/a | no ads/network in app; no UI test suite | NOT RUN |
+| 11 | Accessibility audit with TalkBack / contrast tool | n/a | labels added; not audited | NOT RUN |
+| 12 | Performance profiling | n/a | not run | NOT RUN |

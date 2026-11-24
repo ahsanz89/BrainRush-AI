@@ -1,0 +1,3 @@
+<en-US>
+Welcome to BrainRush AI! Ten brain-training categories, a daily challenge, XP, levels, streaks and achievements. Works offline, no account needed.
+</en-US>
