@@ -1,0 +1,247 @@
+{
+ "version": 1,
+ "category": "word",
+ "license": "Original content, owned by the BrainRush AI project",
+ "questions": [
+  {
+   "id": "wor-001",
+   "category": "word",
+   "prompt": "Which word is closest in meaning to \"abundant\"?",
+   "options": [
+    "Plentiful",
+    "Scarce",
+    "Tiny",
+    "Hidden"
+   ],
+   "answerIndex": 0,
+   "explanation": "Abundant means existing in large quantities.",
+   "difficulty": 1,
+   "source": "original"
+  },
+  {
+   "id": "wor-002",
+   "category": "word",
+   "prompt": "What does \"reluctant\" mean?",
+   "options": [
+    "Eager",
+    "Unwilling",
+    "Certain",
+    "Rapid"
+   ],
+   "answerIndex": 1,
+   "explanation": "A reluctant person hesitates to do something.",
+   "difficulty": 2,
+   "source": "original"
+  },
+  {
+   "id": "wor-003",
+   "category": "word",
+   "prompt": "What does \"meticulous\" mean?",
+   "options": [
+    "Careless",
+    "Loud",
+    "Very careful about details",
+    "Lazy"
+   ],
+   "answerIndex": 2,
+   "explanation": "A meticulous worker checks every detail.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "wor-004",
+   "category": "word",
+   "prompt": "What does \"ephemeral\" mean?",
+   "options": [
+    "Lasting forever",
+    "Heavy",
+    "Brightly coloured",
+    "Lasting a very short time"
+   ],
+   "answerIndex": 3,
+   "explanation": "Ephemeral things disappear quickly, like morning mist.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "wor-005",
+   "category": "word",
+   "prompt": "Which word is the opposite of \"ancient\"?",
+   "options": [
+    "Modern",
+    "Old",
+    "Historic",
+    "Aged"
+   ],
+   "answerIndex": 0,
+   "explanation": "Ancient means very old; modern means recent.",
+   "difficulty": 1,
+   "source": "original"
+  },
+  {
+   "id": "wor-006",
+   "category": "word",
+   "prompt": "What does \"candid\" mean?",
+   "options": [
+    "Secretive",
+    "Honest and direct",
+    "Sweet",
+    "Angry"
+   ],
+   "answerIndex": 1,
+   "explanation": "A candid answer is open and frank.",
+   "difficulty": 2,
+   "source": "original"
+  },
+  {
+   "id": "wor-007",
+   "category": "word",
+   "prompt": "What does \"benevolent\" mean?",
+   "options": [
+    "Cruel",
+    "Confused",
+    "Kind and generous",
+    "Wealthy"
+   ],
+   "answerIndex": 2,
+   "explanation": "Benevolent people wish others well.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "wor-008",
+   "category": "word",
+   "prompt": "What does \"frugal\" mean?",
+   "options": [
+    "Wasteful",
+    "Generous",
+    "Hungry",
+    "Careful with money"
+   ],
+   "answerIndex": 3,
+   "explanation": "Frugal people avoid unnecessary spending.",
+   "difficulty": 2,
+   "source": "original"
+  },
+  {
+   "id": "wor-009",
+   "category": "word",
+   "prompt": "What does \"ambiguous\" mean?",
+   "options": [
+    "Open to more than one meaning",
+    "Perfectly clear",
+    "Simple",
+    "Rude"
+   ],
+   "answerIndex": 0,
+   "explanation": "An ambiguous sentence can be read in different ways.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "wor-010",
+   "category": "word",
+   "prompt": "What does \"resilient\" mean?",
+   "options": [
+    "Easily broken",
+    "Able to recover quickly from difficulty",
+    "Noisy",
+    "Slow"
+   ],
+   "answerIndex": 1,
+   "explanation": "Resilient people bounce back.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "wor-011",
+   "category": "word",
+   "prompt": "Which is the correct spelling of the word meaning \"to get something given to you\"?",
+   "options": [
+    "Recieve",
+    "Receeve",
+    "Receive",
+    "Recive"
+   ],
+   "answerIndex": 2,
+   "explanation": "Remember: i before e, except after c.",
+   "difficulty": 2,
+   "source": "original"
+  },
+  {
+   "id": "wor-012",
+   "category": "word",
+   "prompt": "Which is the correct spelling of the word meaning \"without any doubt\"?",
+   "options": [
+    "Definately",
+    "Definitly",
+    "Definetely",
+    "Definitely"
+   ],
+   "answerIndex": 3,
+   "explanation": "The word contains the stem finite.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "wor-013",
+   "category": "word",
+   "prompt": "What does \"verbose\" mean?",
+   "options": [
+    "Using more words than needed",
+    "Silent",
+    "Brief",
+    "Cheerful"
+   ],
+   "answerIndex": 0,
+   "explanation": "A verbose speech could be much shorter.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "wor-014",
+   "category": "word",
+   "prompt": "What does \"pragmatic\" mean?",
+   "options": [
+    "Dreamy",
+    "Dealing with things in a practical way",
+    "Fearful",
+    "Playful"
+   ],
+   "answerIndex": 1,
+   "explanation": "A pragmatic choice focuses on what works.",
+   "difficulty": 4,
+   "source": "original"
+  },
+  {
+   "id": "wor-015",
+   "category": "word",
+   "prompt": "What does \"lucid\" mean?",
+   "options": [
+    "Dark",
+    "Confusing",
+    "Clear and easy to understand",
+    "Sleepy"
+   ],
+   "answerIndex": 2,
+   "explanation": "A lucid explanation is easy to follow.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "wor-016",
+   "category": "word",
+   "prompt": "Which word means \"to make something better\"?",
+   "options": [
+    "Worsen",
+    "Ignore",
+    "Delay",
+    "Improve"
+   ],
+   "answerIndex": 3,
+   "explanation": "To improve is to raise the quality of something.",
+   "difficulty": 1,
+   "source": "original"
+  }
+ ]
+}

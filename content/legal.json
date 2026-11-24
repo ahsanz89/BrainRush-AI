@@ -1,0 +1,105 @@
+{
+ "effectiveDate": "2026-11-24",
+ "docs": {
+  "privacy": {
+   "title": "Privacy Policy",
+   "sections": [
+    [
+     "Summary",
+     "BrainRush AI is designed to work without collecting your personal data. We do not run servers that receive your information, and there are no accounts, no analytics, no advertising and no tracking in this version."
+    ],
+    [
+     "What is stored on your device",
+     "Your name or nickname (optional), the topics you pick, your settings, scores, XP, streaks, achievements and activity history are stored only on your device, in the app's private storage. We cannot see this data."
+    ],
+    [
+     "What we collect",
+     "Nothing. The app does not send any personal information, device identifiers or usage data to us or to any third party."
+    ],
+    [
+     "Notifications",
+     "If you turn on the daily reminder, the app schedules a notification on your device. It is created locally and no notification service is contacted by the app to deliver it."
+    ],
+    [
+     "Children",
+     "BrainRush AI is intended for users aged 13 and over. It does not knowingly collect information from anyone, including children."
+    ],
+    [
+     "Deleting your data",
+     "Go to Profile > Settings > Delete all my data to erase everything the app has stored. Uninstalling the app also removes it. Because we hold no copy, there is nothing further to request from us."
+    ],
+    [
+     "Changes",
+     "If a future version adds features that handle data (for example advertising or cloud sync), this policy will be updated first and the app will ask for your consent where the law requires it."
+    ],
+    [
+     "Contact",
+     "Questions about privacy: {{SUPPORT_EMAIL}}."
+    ]
+   ]
+  },
+  "terms": {
+   "title": "Terms of Use",
+   "sections": [
+    [
+     "Using the app",
+     "BrainRush AI is provided for entertainment and personal mental exercise. By using it you agree to these terms."
+    ],
+    [
+     "No medical claims",
+     "The app is not a medical device and does not diagnose, treat or prevent any condition. We make no promise that using it improves intelligence, memory or any cognitive ability."
+    ],
+    [
+     "Content accuracy",
+     "Questions are written and checked with care, but errors can occur. Tell us at {{SUPPORT_EMAIL}} if you find one and we will correct it."
+    ],
+    [
+     "Fair use",
+     "Please do not copy the app's content in bulk, reverse engineer it for the purpose of redistributing it, or use automated tools to inflate scores. Progress is stored on your device only."
+    ],
+    [
+     "Availability and changes",
+     "We may update, change or discontinue features at any time. The app is provided as is, without warranties, to the extent permitted by law."
+    ],
+    [
+     "Contact",
+     "{{DEVELOPER_NAME}}, {{SUPPORT_EMAIL}}."
+    ]
+   ]
+  },
+  "support": {
+   "title": "Help and Support",
+   "sections": [
+    [
+     "Contact us",
+     "Email {{SUPPORT_EMAIL}} and include your device model, Android version and what happened. We aim to reply within a few days."
+    ],
+    [
+     "Common questions",
+     "Why did my streak reset? A streak continues when you finish at least one session with a correct answer each calendar day, using your phone's local date.\n\nWhy did a session give no XP? Sessions finished implausibly fast, and sessions after the daily XP limit, earn no XP. The Daily Challenge gives full XP once per day.\n\nHow do I move my progress to a new phone? Progress is stored on the device only in this version, so it cannot be transferred.\n\nHow do I delete my data? Profile > Settings > Delete all my data."
+    ],
+    [
+     "Report a wrong answer",
+     "Send the question text and what you think the right answer is, and we will review it."
+    ]
+   ]
+  },
+  "monetization": {
+   "title": "How BrainRush AI is funded",
+   "sections": [
+    [
+     "Free, no subscription",
+     "BrainRush AI is free. There is no subscription and no in-app purchase."
+    ],
+    [
+     "Advertising",
+     "This version shows no advertisements. If ads are added later, they will never appear during a question or puzzle, will respect your consent choices, and this page and the Privacy Policy will be updated first."
+    ],
+    [
+     "Your data",
+     "We do not sell data. This version does not collect any."
+    ]
+   ]
+  }
+ }
+}

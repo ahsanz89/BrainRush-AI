@@ -1,0 +1,157 @@
+{
+ "version": 1,
+ "category": "critical",
+ "license": "Original content, owned by the BrainRush AI project",
+ "questions": [
+  {
+   "id": "cri-001",
+   "category": "critical",
+   "prompt": "A study of 12 people finds that a supplement helps. What is the main weakness?",
+   "options": [
+    "The sample is too small to generalise",
+    "The supplement is too cheap",
+    "The people were all adults",
+    "The study was published"
+   ],
+   "answerIndex": 0,
+   "explanation": "Small samples can give results that happen by chance.",
+   "difficulty": 2,
+   "source": "original"
+  },
+  {
+   "id": "cri-002",
+   "category": "critical",
+   "prompt": "Ice cream sales and drowning incidents both rise in summer. What is the best conclusion?",
+   "options": [
+    "Ice cream causes drowning",
+    "Warm weather likely affects both",
+    "Drowning causes ice cream sales",
+    "They are unrelated in every way"
+   ],
+   "answerIndex": 1,
+   "explanation": "A third factor, hot weather, explains both. Correlation is not causation.",
+   "difficulty": 2,
+   "source": "original"
+  },
+  {
+   "id": "cri-003",
+   "category": "critical",
+   "prompt": "\"Ignore his plan; he never went to university.\" What kind of argument is this?",
+   "options": [
+    "Bandwagon",
+    "Slippery slope",
+    "Ad hominem",
+    "Appeal to evidence"
+   ],
+   "answerIndex": 2,
+   "explanation": "It attacks the person instead of the plan itself.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "cri-004",
+   "category": "critical",
+   "prompt": "\"Everyone is buying it, so it must be good.\" This is a...",
+   "options": [
+    "Straw man",
+    "Circular argument",
+    "Fair comparison",
+    "Bandwagon appeal"
+   ],
+   "answerIndex": 3,
+   "explanation": "Popularity alone does not show quality.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "cri-005",
+   "category": "critical",
+   "prompt": "Which source is generally the most reliable for checking a scientific claim?",
+   "options": [
+    "A peer-reviewed journal article",
+    "An anonymous forum post",
+    "A social media meme",
+    "An advertisement"
+   ],
+   "answerIndex": 0,
+   "explanation": "Peer review means other experts have checked the methods.",
+   "difficulty": 1,
+   "source": "original"
+  },
+  {
+   "id": "cri-006",
+   "category": "critical",
+   "prompt": "\"Either you back this plan or you hate progress.\" This is an example of a...",
+   "options": [
+    "Fair question",
+    "False dilemma",
+    "Proven fact",
+    "Balanced view"
+   ],
+   "answerIndex": 1,
+   "explanation": "It offers only two choices when many exist.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "cri-007",
+   "category": "critical",
+   "prompt": "Someone makes a surprising claim without evidence. What is the best first response?",
+   "options": [
+    "Accept it immediately",
+    "Reject it angrily",
+    "Ask what evidence supports it",
+    "Repeat it to others"
+   ],
+   "answerIndex": 2,
+   "explanation": "Claims should be supported before they are accepted.",
+   "difficulty": 1,
+   "source": "original"
+  },
+  {
+   "id": "cri-008",
+   "category": "critical",
+   "prompt": "Which statement is an opinion rather than a fact?",
+   "options": [
+    "Water freezes at 0 °C",
+    "The Earth orbits the Sun",
+    "Paris is in France",
+    "Winter is the most pleasant season"
+   ],
+   "answerIndex": 3,
+   "explanation": "Opinions express a preference and cannot be proven true or false.",
+   "difficulty": 1,
+   "source": "original"
+  },
+  {
+   "id": "cri-009",
+   "category": "critical",
+   "prompt": "Two things happen together often. What does this alone tell you about cause?",
+   "options": [
+    "It is not enough to prove one causes the other",
+    "One must cause the other",
+    "Both are random",
+    "They are the same thing"
+   ],
+   "answerIndex": 0,
+   "explanation": "You need more evidence, such as controlled experiments, to show cause.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "cri-010",
+   "category": "critical",
+   "prompt": "Which headline is the most neutral?",
+   "options": [
+    "Council slams through reckless budget",
+    "Council approves new budget",
+    "Council's shocking budget betrays voters",
+    "Council gambles away your money"
+   ],
+   "answerIndex": 1,
+   "explanation": "Neutral wording describes what happened without loaded words.",
+   "difficulty": 2,
+   "source": "original"
+  }
+ ]
+}

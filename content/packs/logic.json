@@ -1,0 +1,157 @@
+{
+ "version": 1,
+ "category": "logic",
+ "license": "Original content, owned by the BrainRush AI project",
+ "questions": [
+  {
+   "id": "log-001",
+   "category": "logic",
+   "prompt": "All roses are flowers, and all flowers need water. Which statement must be true?",
+   "options": [
+    "All roses need water",
+    "All flowers are roses",
+    "Some roses need no water",
+    "Nothing can be concluded"
+   ],
+   "answerIndex": 0,
+   "explanation": "Roses are flowers, and every flower needs water, so every rose does too.",
+   "difficulty": 2,
+   "source": "original"
+  },
+  {
+   "id": "log-002",
+   "category": "logic",
+   "prompt": "If it rains, the street gets wet. The street is wet. What can you conclude?",
+   "options": [
+    "It definitely rained",
+    "It may or may not have rained",
+    "It definitely did not rain",
+    "The street is always wet"
+   ],
+   "answerIndex": 1,
+   "explanation": "A street can get wet for other reasons, such as a hose or a street cleaner.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "log-003",
+   "category": "logic",
+   "prompt": "Tom is taller than Sam, and Sam is taller than Lee. Who is the shortest?",
+   "options": [
+    "Sam",
+    "Tom",
+    "Lee",
+    "Cannot be told"
+   ],
+   "answerIndex": 2,
+   "explanation": "Order from tallest: Tom, Sam, Lee.",
+   "difficulty": 1,
+   "source": "original"
+  },
+  {
+   "id": "log-004",
+   "category": "logic",
+   "prompt": "Anna is older than Ben, Ben is older than Cara, and Cara is older than Dan. Who is second oldest?",
+   "options": [
+    "Anna",
+    "Cara",
+    "Dan",
+    "Ben"
+   ],
+   "answerIndex": 3,
+   "explanation": "Order from oldest: Anna, Ben, Cara, Dan.",
+   "difficulty": 2,
+   "source": "original"
+  },
+  {
+   "id": "log-005",
+   "category": "logic",
+   "prompt": "A bat and a ball cost $1.10 together. The bat costs $1.00 more than the ball. How much is the ball?",
+   "options": [
+    "5 cents",
+    "10 cents",
+    "15 cents",
+    "1 cent"
+   ],
+   "answerIndex": 0,
+   "explanation": "If the ball is 5 cents, the bat is $1.05, and together they cost $1.10.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "log-006",
+   "category": "logic",
+   "prompt": "Which number does not belong with 3, 5, 11 and 9?",
+   "options": [
+    "3",
+    "9",
+    "5",
+    "11"
+   ],
+   "answerIndex": 1,
+   "explanation": "3, 5 and 11 are prime numbers. 9 is divisible by 3.",
+   "difficulty": 2,
+   "source": "original"
+  },
+  {
+   "id": "log-007",
+   "category": "logic",
+   "prompt": "Five machines make five items in five minutes. How long do 100 machines need to make 100 items?",
+   "options": [
+    "100 minutes",
+    "20 minutes",
+    "5 minutes",
+    "1 minute"
+   ],
+   "answerIndex": 2,
+   "explanation": "Each machine makes one item in five minutes, so 100 machines make 100 items in five minutes.",
+   "difficulty": 3,
+   "source": "original"
+  },
+  {
+   "id": "log-008",
+   "category": "logic",
+   "prompt": "All Bloops are Razzies, and all Razzies are Lazzies. Therefore all Bloops are...",
+   "options": [
+    "Not Lazzies",
+    "Only some Lazzies",
+    "Neither Razzies nor Lazzies",
+    "Lazzies"
+   ],
+   "answerIndex": 3,
+   "explanation": "Chain the statements: Bloops are Razzies, which are Lazzies.",
+   "difficulty": 1,
+   "source": "original"
+  },
+  {
+   "id": "log-009",
+   "category": "logic",
+   "prompt": "Which shape is the odd one out: triangle, square, circle, pentagon?",
+   "options": [
+    "Circle",
+    "Triangle",
+    "Square",
+    "Pentagon"
+   ],
+   "answerIndex": 0,
+   "explanation": "The circle is the only shape with no straight sides.",
+   "difficulty": 2,
+   "source": "original"
+  },
+  {
+   "id": "log-010",
+   "category": "logic",
+   "prompt": "A farmer has 17 sheep. All but 9 run away. How many are left?",
+   "options": [
+    "8",
+    "9",
+    "17",
+    "0"
+   ],
+   "answerIndex": 1,
+   "explanation": "\"All but 9\" means 9 stay behind.",
+   "difficulty": 2,
+   "source": "original"
+  }
+ ]
+}
