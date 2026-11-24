@@ -11,7 +11,7 @@ export default function TabsLayout() {
     ({ color, focused }: { color: any; focused: boolean }) => <Ionicons name={focused ? on : n} size={24} color={color} />;
   return (
     <Tabs screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.primary, tabBarInactiveTintColor: colors.muted,
-      tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border, height: 60 + insets.bottom, paddingBottom: insets.bottom + 6, paddingTop: 6 },
+      tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border, height: 72 + insets.bottom, paddingBottom: insets.bottom + 10, paddingTop: 8 },
       tabBarLabelStyle: { fontSize: 12, fontWeight: '600' } }}>
       <Tabs.Screen name="index" options={{ title: 'Home', tabBarIcon: icon('home-outline', 'home') }} />
       <Tabs.Screen name="train" options={{ title: 'Train', tabBarIcon: icon('barbell-outline', 'barbell') }} />
