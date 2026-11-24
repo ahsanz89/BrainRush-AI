@@ -8,7 +8,7 @@ A free, offline, privacy-first brain-training app for Android (React Native + Ex
 | | |
 |---|---|
 | Package ID | `com.brainrush.ai` (permanent once published; change in `app.json` before the first upload if you want another) |
-| Target SDK | Android 16 / API 36 (Google Play requirement from 2026-08-31), min SDK 24 |
+| Target SDK | Android 16 / API 36 (Google Play requirement from 2026-08-31); compile SDK 37; min SDK 24 |
 | Data | Stored on device only (AsyncStorage). Network permission is blocked in the manifest. |
 | Builds | GitHub Actions (`.github/workflows/android.yml`). No third-party services. |
 

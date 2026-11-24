@@ -37,6 +37,10 @@ jobs:
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: 17 }
       - run: npm ci
+      - name: Install Android platform 37 (Expo SDK 58 libraries compile against it)
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37" || echo "sdkmanager could not preinstall; Gradle will try to download it"
       - run: npx expo prebuild --platform android --no-install --clean
       - name: Build test APK
         working-directory: android
@@ -77,6 +81,10 @@ jobs:
         run: |
           echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/upload.jks"
           echo "ANDROID_KEYSTORE_PATH=$RUNNER_TEMP/upload.jks" >> "$GITHUB_ENV"
+      - name: Install Android platform 37 (Expo SDK 58 libraries compile against it)
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37" || echo "sdkmanager could not preinstall; Gradle will try to download it"
       - run: npx expo prebuild --platform android --no-install --clean
       - name: Build signed APK and AAB
         working-directory: android
