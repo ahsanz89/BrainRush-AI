@@ -64,6 +64,8 @@ jobs:
     if: github.event_name == 'workflow_dispatch' && inputs.release
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
       ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
@@ -115,3 +117,11 @@ jobs:
           name: BrainRush-AI-release
           path: out/*
           retention-days: 30
+      - name: Publish a GitHub Release with the signed files (easy download from the Releases page)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="release-${GITHUB_RUN_NUMBER}"
+          gh release create "$TAG" out/BrainRush-AI-release.aab out/BrainRush-AI-release.apk out/SHA256SUMS.txt \
+            --repo "$GITHUB_REPOSITORY" --title "BrainRush AI $TAG" \
+            --notes "Signed with the upload key. Upload the .aab to Google Play Console. Built from commit $GITHUB_SHA."

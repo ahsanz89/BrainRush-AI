@@ -4,7 +4,7 @@ Effective 2026-11-24
 
 ## Contact us
 
-Email REPLACE_WITH_SUPPORT_EMAIL and include your device model, Android version and what happened. We aim to reply within a few days.
+Email ahsan.zaheer009@gmail.com and include your device model, Android version and what happened. We aim to reply within a few days.
 
 ## Common questions
 

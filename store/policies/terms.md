@@ -12,7 +12,7 @@ The app is not a medical device and does not diagnose, treat or prevent any cond
 
 ## Content accuracy
 
-Questions are written and checked with care, but errors can occur. Tell us at REPLACE_WITH_SUPPORT_EMAIL if you find one and we will correct it.
+Questions are written and checked with care, but errors can occur. Tell us at ahsan.zaheer009@gmail.com if you find one and we will correct it.
 
 ## Fair use
 
@@ -24,5 +24,5 @@ We may update, change or discontinue features at any time. The app is provided a
 
 ## Contact
 
-REPLACE_WITH_DEVELOPER_NAME, REPLACE_WITH_SUPPORT_EMAIL.
+Ahsan Zaheer, ahsan.zaheer009@gmail.com.
 

@@ -4,7 +4,7 @@ Effective 2026-11-24
 
 ## Who we are
 
-BrainRush AI (the app) is published by REPLACE_WITH_DEVELOPER_NAME. You can contact us at REPLACE_WITH_SUPPORT_EMAIL.
+BrainRush AI (the app) is published by Ahsan Zaheer. You can contact us at ahsan.zaheer009@gmail.com.
 
 ## Summary
 
@@ -42,7 +42,7 @@ BrainRush AI is intended for people aged 13 and over and is not directed at chil
 
 ## Your rights
 
-Because we hold no personal data about you, there is nothing for us to access, correct or delete on our side. You are in full control of the data on your device through Settings. If your local law gives you privacy rights, you can still contact us at REPLACE_WITH_SUPPORT_EMAIL with any question.
+Because we hold no personal data about you, there is nothing for us to access, correct or delete on our side. You are in full control of the data on your device through Settings. If your local law gives you privacy rights, you can still contact us at ahsan.zaheer009@gmail.com with any question.
 
 ## International users
 
@@ -54,5 +54,5 @@ If a future version adds features that handle data (for example advertising, clo
 
 ## Contact
 
-Questions about privacy: REPLACE_WITH_SUPPORT_EMAIL.
+Questions about privacy: ahsan.zaheer009@gmail.com.
 
